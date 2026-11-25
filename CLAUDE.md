@@ -78,6 +78,8 @@ Thème en blocs (FSE), **sans étape de compilation**.
   « Informations DSITD » : `assets/js/meta-panel.js`).
 - `inc/navigation.php` : rubrique courante surlignée (liens personnalisés du menu).
 - `inc/securite.php` : XML-RPC off, version masquée, `/wp/v2/users` réservé aux connectés.
+- `inc/reglages-api.php` : expose `permalink_structure` dans `/wp/v2/settings` (pour le script de
+  structure) et régénère les règles de réécriture quand elle change.
 - Les liens internes sont **relatifs** (`/contact/`, `/la-dsitd/`…) : le thème est portable.
 - Slugs attendus par le thème : pages `la-dsitd`, `la-dsitd/annuaire`, `services`, `cybersecurite`,
   `cybersecurite/signaler-un-incident`, `transformation-digitale`, `bibliotheque`, `actualites`
@@ -92,6 +94,14 @@ souvent 429 : utiliser `mirror.gcr.io/library/wordpress:php8.3-apache`, `mirror.
 Dockerfile). Les conteneurs n'ont pas d'accès Internet : télécharger depuis l'hôte (ex. pack
 fr_FR) puis `docker cp`. Comparer avec les maquettes par captures Playwright (1366 px et 390 px).
 
+## Script de structure `scripts/structure.py`
+
+Python 3 sans dépendance, **idempotent** : crée les pages / catégories / formats manquants, corrige
+titres, parents, ordre et réglages, sans écraser le contenu d'une page existante.
+`WP_URL=https://… python3 scripts/structure.py [--dry-run]` (+ `WP_USER` / `WP_APP_PASSWORD` hors de
+l'environnement Claude, où le proxy injecte l'identifiant). Toute évolution de la structure passe
+par ce script (pour pouvoir la rejouer sur le site final).
+
 ## Conventions
 - Branche par étape, pull request vers `main` à faire valider par l'utilisateur (la fusion
   déclenche le déploiement). Messages de commit en français.
@@ -104,11 +114,14 @@ fr_FR) puis `docker cp`. Comparer avec les maquettes par captures Playwright (13
 - [x] **Étape 1** — Thème : socle, en-tête, pied de page, accueil fidèle à la maquette, CPT,
       Dockerfile/compose (PR #1), image d'aperçu + menu écrans moyens, v0.1.1 (PR #2).
       Thème déployé sur ecab2.mds-dsi.org.
-- [ ] Activer le thème « DSITD » sur le site de test (encore Twenty Twenty-Five ; demander à
-      l'utilisateur s'il veut que ce soit fait par l'API).
-- [ ] **Étape 2** — Structure via l'API, sous forme de **script rejouable** versionné dans le dépôt
-      (pour le site final) : pages de l'arborescence, page d'accueil statique + page Actualités,
-      catégories, formats d'astuces, titre « DSITD — Ministère des Sports », permaliens.
+- [x] Thème « DSITD » actif sur le site de test.
+- [x] **Étape 2** — `scripts/structure.py` exécuté sur ecab2 : 16 pages (accueil statique, page des
+      articles `actualites`, l'ancienne « Politique de confidentialité » devenue `donnees-personnelles`),
+      6 catégories, 4 formats (Fiche pratique, Vidéo, Pas à pas, Infographie — à confirmer), titre,
+      slogan, fuseau Africa/Abidjan, 9 articles par page, commentaires fermés par défaut, exemples
+      WordPress à la corbeille. Thème v0.2.0 (`inc/reglages-api.php`).
+      **Reste** : après fusion/déploiement du thème 0.2.0, relancer le script pour passer les
+      permaliens de `/%year%/%monthnum%/%day%/%postname%/` à `/%postname%/`.
 - [ ] **Étape 3** — Gabarits des rubriques (fiche plateforme, archive plateformes, alerte, astuce,
       document) d'après les maquettes, puis extensions du cahier.
 - [ ] Contenus : armoiries officielles, coordonnées du pied de page, liens réseaux sociaux,
