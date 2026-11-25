@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "dsitd/newsletter",
+	"title": "Lettre d'information",
+	"category": "theme",
+	"icon": "admin-site-alt3",
+	"description": "Encart d'abonnement à la lettre numérique.",
+	"textdomain": "dsitd",
+	"attributes": {},
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true
+		}
+	},
+	"editorScript": "dsitd-blocks-editor",
+	"render": "file:./render.php"
+}

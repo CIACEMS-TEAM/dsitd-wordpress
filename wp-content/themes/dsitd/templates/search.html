@@ -1,0 +1,41 @@
+<!-- wp:template-part {"slug":"header","tagName":"header","area":"header","className":"dsitd-site-entete"} /-->
+
+<!-- wp:group {"tagName":"main","className":"dsitd-main dsitd-archive","layout":{"type":"constrained"}} -->
+<main class="wp-block-group dsitd-main dsitd-archive"><!-- wp:group {"align":"full","className":"dsitd-bandeau-page","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull dsitd-bandeau-page"><!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide"><!-- wp:dsitd/fil-ariane /-->
+
+<!-- wp:query-title {"type":"search"} /-->
+
+<!-- wp:search {"label":"Nouvelle recherche","showLabel":false,"placeholder":"Rechercher…","buttonText":"Rechercher","buttonPosition":"button-inside","buttonUseIcon":true,"className":"dsitd-recherche dsitd-recherche--grande"} /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:query {"queryId":1,"query":{"perPage":12,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"align":"wide","className":"dsitd-actus dsitd-section"} -->
+<div class="wp-block-query alignwide dsitd-actus dsitd-section"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
+<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9","sizeSlug":"dsitd-carte","className":"dsitd-image-ou-defaut"} /-->
+
+<!-- wp:post-terms {"term":"category","className":"is-style-etiquette"} /-->
+
+<!-- wp:post-title {"level":2,"isLink":true,"className":"dsitd-titre-carte"} /-->
+
+<!-- wp:post-excerpt {"excerptLength":22} /-->
+
+<!-- wp:post-date {"format":"j F Y"} /-->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination {"paginationArrow":"arrow","layout":{"type":"flex","justifyContent":"center"}} -->
+<!-- wp:query-pagination-previous {"label":"Précédent"} /-->
+<!-- wp:query-pagination-numbers /-->
+<!-- wp:query-pagination-next {"label":"Suivant"} /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph {"className":"dsitd-vide"} -->
+<p class="dsitd-vide">Aucun résultat. Essayez avec d’autres mots-clés ou parcourez les rubriques du menu.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer","area":"footer","className":"dsitd-site-pied"} /-->

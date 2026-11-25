@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "dsitd/agenda",
+	"title": "Formations & agenda",
+	"category": "theme",
+	"icon": "admin-site-alt3",
+	"description": "Prochains évènements (The Events Calendar).",
+	"textdomain": "dsitd",
+	"attributes": {
+		"nombre": {
+			"type": "integer",
+			"default": 3
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true
+		}
+	},
+	"editorScript": "dsitd-blocks-editor",
+	"render": "file:./render.php"
+}
