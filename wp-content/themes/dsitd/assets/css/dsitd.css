@@ -422,6 +422,16 @@ h2.is-petit { font-size: 24px; }
 .dsitd-pied__bas p { margin: 0; }
 .dsitd-pied__bas a { text-decoration: underline; }
 
+/* Menu : écrans moyens (portables 1024-1279 px) */
+@media (max-width: 1279px) {
+	.dsitd-menu .wp-block-navigation { font-size: 12px; }
+	.dsitd-menu .wp-block-navigation .wp-block-navigation-item__content { padding-inline: 7px; }
+}
+@media (max-width: 1199px) {
+	.dsitd-menu .wp-block-navigation { font-size: 11px; }
+	.dsitd-menu .wp-block-navigation .wp-block-navigation-item__content { padding-inline: 5px; }
+}
+
 /* ---------- Mobile ---------- */
 @media (max-width: 781px) {
 	:root { --dsitd-section: 36px; }
