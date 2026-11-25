@@ -1,0 +1,28 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "dsitd/veille",
+	"title": "Veille Sport Tech",
+	"category": "theme",
+	"icon": "admin-site-alt3",
+	"description": "Derniers articles de la catégorie « Veille Sport Tech ».",
+	"textdomain": "dsitd",
+	"attributes": {
+		"nombre": {
+			"type": "integer",
+			"default": 3
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"margin": true
+		}
+	},
+	"editorScript": "dsitd-blocks-editor",
+	"render": "file:./render.php"
+}
