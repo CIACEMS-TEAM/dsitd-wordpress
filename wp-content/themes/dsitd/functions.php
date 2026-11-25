@@ -16,3 +16,4 @@ require DSITD_DIR . '/inc/post-types.php';
 require DSITD_DIR . '/inc/blocks.php';
 require DSITD_DIR . '/inc/navigation.php';
 require DSITD_DIR . '/inc/securite.php';
+require DSITD_DIR . '/inc/reglages-api.php';

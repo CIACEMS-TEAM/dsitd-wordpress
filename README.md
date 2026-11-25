@@ -10,6 +10,7 @@ Site de la Direction des Systèmes d'Information et de la Transformation Digital
 | `Dockerfile` | Image `wordpress:php8.3-apache` + thème |
 | `docker/dsitd-entrypoint.sh` | Copie le thème dans le volume WordPress à chaque démarrage |
 | `docker-compose.yml` | Déploiement Dokploy (WordPress + MySQL 8.4) |
+| `scripts/structure.py` | Structure du site (pages, catégories, formats, réglages) via l'API REST, rejouable |
 
 ## Le thème `dsitd`
 
@@ -41,6 +42,21 @@ Accès rapides, services et indicateurs sont des blocs statiques, modifiables da
 Le service Compose existant de Dokploy est relié à ce dépôt (branche `main`). Chaque déploiement reconstruit l'image ; au démarrage, le thème est recopié dans le volume `wp_app`. La base (`wp_data`), les médias et les extensions sont conservés.
 
 Variables d'environnement attendues dans Dokploy : `DB_NAME`, `DB_PASSWORD`, `WP_DOMAIN` (ex. `ecab2.mds-dsi.org`).
+
+## Structure du site (`scripts/structure.py`)
+
+Crée ou remet d'aplomb, via l'API REST, l'arborescence des pages, la page d'accueil statique et la
+page Actualités, les catégories, les formats d'astuces, le titre, le fuseau horaire et les
+permaliens. Le script est idempotent (il n'écrase pas le contenu des pages existantes) : on peut le
+relancer à volonté, notamment pour préparer le site final.
+
+```bash
+WP_URL=https://exemple.ci WP_USER=admin WP_APP_PASSWORD="xxxx xxxx xxxx xxxx xxxx xxxx" \
+  python3 scripts/structure.py --dry-run
+```
+
+Retirer `--dry-run` pour appliquer. Le mot de passe d'application se crée dans *Utilisateurs →
+Profil*. Le réglage des permaliens par l'API nécessite le thème DSITD 0.2.0 ou plus.
 
 ## Travailler en local
 
